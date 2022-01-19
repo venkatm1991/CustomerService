@@ -42,10 +42,12 @@ public class CustomerController {
     consumes = MediaType.APPLICATION_JSON_VALUE
   )
   public ResponseEntity<CustomerResponse> publishCustomer(
-		  @Valid @NotEmpty @RequestHeader(value = "Authorization", required = true) String authorization,
-		  @Valid @NotEmpty @RequestHeader(value = "Transaction-Id", required = true) String transactionId,
-		  @Valid @NotEmpty @RequestHeader(value = "Activity-Id", required = true) String activityId,
-		  @Valid @RequestBody CustomerRequest customerRequest) {
+      @Valid @NotEmpty @RequestHeader(value = "Authorization", required = true)
+          String authorization,
+      @Valid @NotEmpty @RequestHeader(value = "Transaction-Id", required = true)
+          String transactionId,
+      @Valid @NotEmpty @RequestHeader(value = "Activity-Id", required = true) String activityId,
+      @Valid @RequestBody CustomerRequest customerRequest) {
     String maskCustomerRequest =
         jsonUtil.convertObjectToString(customerMaskUtil.convert(customerRequest));
     log.info("addCustomer request {}", maskCustomerRequest);

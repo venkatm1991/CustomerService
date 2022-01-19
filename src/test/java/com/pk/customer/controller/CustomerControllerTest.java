@@ -80,27 +80,31 @@ public class CustomerControllerTest {
         .perform(
             post("/v1/api/customer")
                 .contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON).header("Authorization", "Bearer 96b33cec-643d").header("Transaction-Id", "HJ7845FGKSK").header("Activity-Id", "HDK453")
+                .accept(MediaType.APPLICATION_JSON)
+                .header("Authorization", "Bearer 96b33cec-643d")
+                .header("Transaction-Id", "HJ7845FGKSK")
+                .header("Activity-Id", "HDK453")
                 .content(
                     "{\r\n"
-                    + "  \"customerNumber\": \"AF46375GE4\",\r\n"
-                    + "  \"firstName\": \"Venkat232344\",\r\n"
-                    + "  \"lastName\": \"Mandalapu46578\",\r\n"
-                    + "  \"birthdate\": \"28-10-1995\",\r\n"
-                    + "  \"country\": \"India\",\r\n"
-                    + "  \"countryCode\": \"IN\",\r\n"
-                    + "  \"mobileNumber\": 9012347891,\r\n"
-                    + "  \"email\": \"newuser123@example.com\",\r\n"
-                    + "  \"customerStatus\": \"O\",\r\n"
-                    + "  \"address\": {\r\n"
-                    + "    \"addressLine1\": \"Hyd 37\",\r\n"
-                    + "    \"addressLine2\": \"India\",\r\n"
-                    + "    \"street\": \"Ameerpet\",\r\n"
-                    + "    \"postalCode\": \"50043\"\r\n"
-                    + "  }\r\n"
-                    + "}"))
+                        + "  \"customerNumber\": \"AF46375GE4\",\r\n"
+                        + "  \"firstName\": \"Venkat232344\",\r\n"
+                        + "  \"lastName\": \"Mandalapu46578\",\r\n"
+                        + "  \"birthdate\": \"28-10-1995\",\r\n"
+                        + "  \"country\": \"India\",\r\n"
+                        + "  \"countryCode\": \"IN\",\r\n"
+                        + "  \"mobileNumber\": 9012347891,\r\n"
+                        + "  \"email\": \"newuser123@example.com\",\r\n"
+                        + "  \"customerStatus\": \"O\",\r\n"
+                        + "  \"address\": {\r\n"
+                        + "    \"addressLine1\": \"Hyd 37\",\r\n"
+                        + "    \"addressLine2\": \"India\",\r\n"
+                        + "    \"street\": \"Ameerpet\",\r\n"
+                        + "    \"postalCode\": \"50043\"\r\n"
+                        + "  }\r\n"
+                        + "}"))
         .andExpect(status().isOk());
   }
+
   @Test
   public void publishCustomerHeaderMissingTest() throws Exception {
 
@@ -117,25 +121,24 @@ public class CustomerControllerTest {
                 .accept(MediaType.APPLICATION_JSON)
                 .content(
                     "{\r\n"
-                    + "  \"customerNumber\": \"AF46375GE4\",\r\n"
-                    + "  \"firstName\": \"Venkat232344\",\r\n"
-                    + "  \"lastName\": \"Mandalapu46578\",\r\n"
-                    + "  \"birthdate\": \"28-10-1995\",\r\n"
-                    + "  \"country\": \"India\",\r\n"
-                    + "  \"countryCode\": \"IN\",\r\n"
-                    + "  \"mobileNumber\": 9012347891,\r\n"
-                    + "  \"email\": \"newuser123@example.com\",\r\n"
-                    + "  \"customerStatus\": \"O\",\r\n"
-                    + "  \"address\": {\r\n"
-                    + "    \"addressLine1\": \"Hyd 37\",\r\n"
-                    + "    \"addressLine2\": \"India\",\r\n"
-                    + "    \"street\": \"Ameerpet\",\r\n"
-                    + "    \"postalCode\": \"50043\"\r\n"
-                    + "  }\r\n"
-                    + "}"))
+                        + "  \"customerNumber\": \"AF46375GE4\",\r\n"
+                        + "  \"firstName\": \"Venkat232344\",\r\n"
+                        + "  \"lastName\": \"Mandalapu46578\",\r\n"
+                        + "  \"birthdate\": \"28-10-1995\",\r\n"
+                        + "  \"country\": \"India\",\r\n"
+                        + "  \"countryCode\": \"IN\",\r\n"
+                        + "  \"mobileNumber\": 9012347891,\r\n"
+                        + "  \"email\": \"newuser123@example.com\",\r\n"
+                        + "  \"customerStatus\": \"O\",\r\n"
+                        + "  \"address\": {\r\n"
+                        + "    \"addressLine1\": \"Hyd 37\",\r\n"
+                        + "    \"addressLine2\": \"India\",\r\n"
+                        + "    \"street\": \"Ameerpet\",\r\n"
+                        + "    \"postalCode\": \"50043\"\r\n"
+                        + "  }\r\n"
+                        + "}"))
         .andExpect(status().isBadRequest());
   }
-
 
   @Test
   public void publishCustomerBadRequestTest() throws Exception {
@@ -151,7 +154,10 @@ public class CustomerControllerTest {
                 .header("Transaction-Id", "CS9URF")
                 .header("Activity-Id", "CS00546")
                 .contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON).header("Authorization", "Bearer 96b33cec-643d").header("Transaction-Id", "HJ7845FGKSK").header("Activity-Id", "HDK453")
+                .accept(MediaType.APPLICATION_JSON)
+                .header("Authorization", "Bearer 96b33cec-643d")
+                .header("Transaction-Id", "HJ7845FGKSK")
+                .header("Activity-Id", "HDK453")
                 .content(
                     "{\r\n"
                         + "  \"customerNumber\": \"AF46375GE4\",\r\n"

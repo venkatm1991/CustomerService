@@ -17,14 +17,13 @@ import com.fasterxml.jackson.annotation.JsonValue;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 
-/**
- * CustomerRequest
- */
+/** CustomerRequest */
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-01-19T10:15:25.890Z[GMT]")
-
-
-public class CustomerRequest   {
+@javax.annotation.Generated(
+  value = "io.swagger.codegen.v3.generators.java.SpringCodegen",
+  date = "2022-01-19T10:15:25.890Z[GMT]"
+)
+public class CustomerRequest {
   @JsonProperty("customerNumber")
   @NotBlank
   private String customerNumber = null;
@@ -58,16 +57,14 @@ public class CustomerRequest   {
   @NotBlank
   private String email = null;
 
-  /**
-   * required, enum values (O-Open , C-Close , S-Suspended , R-Restored)
-   */
+  /** required, enum values (O-Open , C-Close , S-Suspended , R-Restored) */
   public enum CustomerStatusEnum {
     O("O"),
-    
+
     C("C"),
-    
+
     S("S"),
-    
+
     R("R");
 
     private String value;
@@ -92,6 +89,7 @@ public class CustomerRequest   {
       return null;
     }
   }
+
   @JsonProperty("customerStatus")
   @NotNull
   private CustomerStatusEnum customerStatus = null;
@@ -107,12 +105,14 @@ public class CustomerRequest   {
 
   /**
    * Get customerNumber
+   *
    * @return customerNumber
-   **/
+   */
   @Schema(example = "TY6129H983", required = true, description = "")
-      @NotNull
-
-  @Pattern(regexp="^(?=.*[A-Z])(?=.*[0-9])[A-Z0-9]+$") @Size(max=10)   public String getCustomerNumber() {
+  @NotNull
+  @Pattern(regexp = "^(?=.*[A-Z])(?=.*[0-9])[A-Z0-9]+$")
+  @Size(max = 10)
+  public String getCustomerNumber() {
     return customerNumber;
   }
 
@@ -127,12 +127,13 @@ public class CustomerRequest   {
 
   /**
    * Get firstName
+   *
    * @return firstName
-   **/
+   */
   @Schema(example = "Venkat Rao", required = true, description = "")
-      @NotNull
-
-  @Size(min=10,max=50)   public String getFirstName() {
+  @NotNull
+  @Size(min = 10, max = 50)
+  public String getFirstName() {
     return firstName;
   }
 
@@ -147,12 +148,13 @@ public class CustomerRequest   {
 
   /**
    * Get lastName
+   *
    * @return lastName
-   **/
+   */
   @Schema(example = "Mandalapu Venkat", required = true, description = "")
-      @NotNull
-
-  @Size(min=10,max=50)   public String getLastName() {
+  @NotNull
+  @Size(min = 10, max = 50)
+  public String getLastName() {
     return lastName;
   }
 
@@ -167,11 +169,11 @@ public class CustomerRequest   {
 
   /**
    * Get birthdate
+   *
    * @return birthdate
-   **/
+   */
   @Schema(example = "20-08-1995", required = true, description = "")
-      @NotNull
-
+  @NotNull
   public String getBirthdate() {
     return birthdate;
   }
@@ -187,12 +189,12 @@ public class CustomerRequest   {
 
   /**
    * Get country
+   *
    * @return country
-   **/
+   */
   @Schema(example = "INDIA", required = true, description = "")
-      @NotNull
-
-    public String getCountry() {
+  @NotNull
+  public String getCountry() {
     return country;
   }
 
@@ -207,12 +209,13 @@ public class CustomerRequest   {
 
   /**
    * Get countryCode
+   *
    * @return countryCode
-   **/
+   */
   @Schema(example = "IN", required = true, description = "")
-      @NotNull
-
-  @Size(min=2,max=2)   public String getCountryCode() {
+  @NotNull
+  @Size(min = 2, max = 2)
+  public String getCountryCode() {
     return countryCode;
   }
 
@@ -227,13 +230,13 @@ public class CustomerRequest   {
 
   /**
    * Get mobileNumber
+   *
    * @return mobileNumber
-   **/
+   */
   @Schema(example = "9764825262", required = true, description = "")
-      @NotNull
-
-    @Valid
-    public BigDecimal getMobileNumber() {
+  @NotNull
+  @Valid
+  public BigDecimal getMobileNumber() {
     return mobileNumber;
   }
 
@@ -248,12 +251,12 @@ public class CustomerRequest   {
 
   /**
    * Get email
+   *
    * @return email
-   **/
+   */
   @Schema(example = "user1234@gmail.com", required = true, description = "")
-      @NotNull
-
-    public String getEmail() {
+  @NotNull
+  public String getEmail() {
     return email;
   }
 
@@ -268,12 +271,16 @@ public class CustomerRequest   {
 
   /**
    * required, enum values (O-Open , C-Close , S-Suspended , R-Restored)
+   *
    * @return customerStatus
-   **/
-  @Schema(example = "O", required = true, description = "required, enum values (O-Open , C-Close , S-Suspended , R-Restored)")
-      @NotNull
-
-    public CustomerStatusEnum getCustomerStatus() {
+   */
+  @Schema(
+    example = "O",
+    required = true,
+    description = "required, enum values (O-Open , C-Close , S-Suspended , R-Restored)"
+  )
+  @NotNull
+  public CustomerStatusEnum getCustomerStatus() {
     return customerStatus;
   }
 
@@ -288,20 +295,19 @@ public class CustomerRequest   {
 
   /**
    * Get address
+   *
    * @return address
-   **/
+   */
   @Schema(required = true, description = "")
-      @NotNull
-
-    @Valid
-    public Address getAddress() {
+  @NotNull
+  @Valid
+  public Address getAddress() {
     return address;
   }
 
   public void setAddress(Address address) {
     this.address = address;
   }
-
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -312,28 +318,38 @@ public class CustomerRequest   {
       return false;
     }
     CustomerRequest customerRequest = (CustomerRequest) o;
-    return Objects.equals(this.customerNumber, customerRequest.customerNumber) &&
-        Objects.equals(this.firstName, customerRequest.firstName) &&
-        Objects.equals(this.lastName, customerRequest.lastName) &&
-        Objects.equals(this.birthdate, customerRequest.birthdate) &&
-        Objects.equals(this.country, customerRequest.country) &&
-        Objects.equals(this.countryCode, customerRequest.countryCode) &&
-        Objects.equals(this.mobileNumber, customerRequest.mobileNumber) &&
-        Objects.equals(this.email, customerRequest.email) &&
-        Objects.equals(this.customerStatus, customerRequest.customerStatus) &&
-        Objects.equals(this.address, customerRequest.address);
+    return Objects.equals(this.customerNumber, customerRequest.customerNumber)
+        && Objects.equals(this.firstName, customerRequest.firstName)
+        && Objects.equals(this.lastName, customerRequest.lastName)
+        && Objects.equals(this.birthdate, customerRequest.birthdate)
+        && Objects.equals(this.country, customerRequest.country)
+        && Objects.equals(this.countryCode, customerRequest.countryCode)
+        && Objects.equals(this.mobileNumber, customerRequest.mobileNumber)
+        && Objects.equals(this.email, customerRequest.email)
+        && Objects.equals(this.customerStatus, customerRequest.customerStatus)
+        && Objects.equals(this.address, customerRequest.address);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(customerNumber, firstName, lastName, birthdate, country, countryCode, mobileNumber, email, customerStatus, address);
+    return Objects.hash(
+        customerNumber,
+        firstName,
+        lastName,
+        birthdate,
+        country,
+        countryCode,
+        mobileNumber,
+        email,
+        customerStatus,
+        address);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class CustomerRequest {\n");
-    
+
     sb.append("    customerNumber: ").append(toIndentedString(customerNumber)).append("\n");
     sb.append("    firstName: ").append(toIndentedString(firstName)).append("\n");
     sb.append("    lastName: ").append(toIndentedString(lastName)).append("\n");
@@ -349,8 +365,7 @@ public class CustomerRequest   {
   }
 
   /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
+   * Convert the given object to string with each line indented by 4 spaces (except the first line).
    */
   private String toIndentedString(java.lang.Object o) {
     if (o == null) {

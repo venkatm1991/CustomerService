@@ -51,6 +51,7 @@ public class CustomerControllerAdvice {
     log.error("Error response - {}", errorResponse);
     return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
   }
+
   @ExceptionHandler(MethodArgumentNotValidException.class)
   public ResponseEntity<ErrorResponse> handleException(MethodArgumentNotValidException ex) {
     ErrorResponse errorResponse = new ErrorResponse();
@@ -60,7 +61,6 @@ public class CustomerControllerAdvice {
     log.error("Error response - {}", errorResponse);
     return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
   }
-  
 
   @ExceptionHandler(CustomerServiceRequestException.class)
   public ResponseEntity<ErrorResponse> handleException(CustomerServiceRequestException ex) {
@@ -71,7 +71,7 @@ public class CustomerControllerAdvice {
     log.error("Error response - {}", errorResponse);
     return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
   }
-  
+
   @ExceptionHandler(UnexpectedTypeException.class)
   public ResponseEntity<ErrorResponse> handleException(UnexpectedTypeException ex) {
     ErrorResponse errorResponse = new ErrorResponse();
@@ -81,7 +81,4 @@ public class CustomerControllerAdvice {
     log.error("Error response - {}", errorResponse);
     return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
   }
-  
-  
-  
- }
+}
