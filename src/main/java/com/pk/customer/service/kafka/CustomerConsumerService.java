@@ -9,15 +9,17 @@ import com.pk.customer.interfaces.ICustomerConsumerService;
 import com.pk.customer.service.CustomerService;
 
 @Service
-public class CustomerConsumerService implements ICustomerConsumerService{
-	
-	
-	@Autowired
-	CustomerService customerService;
+public class CustomerConsumerService implements ICustomerConsumerService {
 
-	@Override
-	@KafkaListener(groupId = "customer-service-1", topics = "customer_topic", containerFactory = "consumerKafkaListenerContainerFactory")
-	public void getMessage(Payload payload) {
-		customerService.saveAuditData(payload);
-	}
+  @Autowired CustomerService customerService;
+
+  @Override
+  @KafkaListener(
+    groupId = "customer-service-1",
+    topics = "customer_topic",
+    containerFactory = "consumerKafkaListenerContainerFactory"
+  )
+  public void getMessage(Payload payload) {
+    customerService.saveAuditData(payload);
+  }
 }

@@ -6,6 +6,4 @@ import org.springframework.stereotype.Repository;
 import com.pk.customer.entity.ErrorLogEntity;
 
 @Repository
-public interface ErrorLogRepository extends JpaRepository<ErrorLogEntity,Integer> {
-
-}
+public interface ErrorLogRepository extends JpaRepository<ErrorLogEntity, Integer> {}

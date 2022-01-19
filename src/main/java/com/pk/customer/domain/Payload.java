@@ -7,19 +7,17 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@JsonPropertyOrder({ "tractionId", "activityId", "customerRequest" })
+@JsonPropertyOrder({"tractionId", "activityId", "customerRequest"})
 @Setter
 @Getter
 @NoArgsConstructor
-public class Payload   {
+public class Payload {
   @JsonProperty("tractionId")
   private String tranctionId;
-  
+
   @JsonProperty("activityId")
   private String activityId;
 
   @JsonProperty("customerRequest")
   private CustomerRequest customerRequest;
-
-  }
-
+}

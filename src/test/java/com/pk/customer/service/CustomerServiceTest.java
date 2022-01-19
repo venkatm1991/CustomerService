@@ -27,60 +27,56 @@ import com.pk.customer.util.ObjectConvertUtil;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class CustomerServiceTest {
-	
-	@Autowired
-	private CustomerService customerService;
 
-	@MockBean
-	private AuditLogRepository auditLogRepository;
-	
-	@MockBean
-	private ErrorLogRepository errorLogRepository;
-	
-	@MockBean
-	ObjectConvertUtil objectConvertUtil;
-	
-	AuditLogEntity auditLogEntity=null;
-	ErrorLogEntity errorLogEntity=null;
-	Payload payload =null;
-	
-	@Before
-    public void setup() {
-	CustomerRequest customerRequest = new CustomerRequest ();
-	customerRequest.setBirthdate("20-05-1991");
-	customerRequest.setCountry("India");
-	customerRequest.setCountryCode("IN");
-	customerRequest.setCustomerNumber("HKJ73985IM");
-	customerRequest.setCustomerStatus(CustomerStatusEnum.O);
-	customerRequest.setEmail("user123@gmail.com");
-	customerRequest.setFirstName("Venkat 12345");
-	customerRequest.setLastName("Mandalapu 687");
-	customerRequest.setMobileNumber(BigDecimal.valueOf(8573567678l));
-	Address address=new Address();
-	address.setAddressLine1("H-NO :728,HYD");
-	address.setAddressLine2("INDIA");
-	address.setStreet("KPHB");
-	address.setPostalCode("78745");
-	customerRequest.setAddress(address);
-	payload = new Payload();
-	payload.setCustomerRequest(customerRequest);
-	auditLogEntity= objectConvertUtil.convertAuditLog(payload);
-	errorLogEntity=objectConvertUtil.convertErrorLog(payload, "CustomerServiceException", "invalid input");
-	
-	}
-	
-	@Test
-	public void saveAuditDataTest() {
-		when(objectConvertUtil.convertAuditLog(any())).thenReturn(auditLogEntity);
-		when(auditLogRepository.save(any())).thenReturn(auditLogEntity);
-		customerService.saveAuditData(any());
-	}
-	@Test
-	public void saveErrorDataTest() {
-		when(objectConvertUtil.convertErrorLog(any(),anyString(),anyString())).thenReturn(errorLogEntity);
-		when(errorLogRepository.save(any())).thenReturn(errorLogEntity);
-		customerService.saveErrorData(payload,"CustomerServiceException", "invalid input");
-		}
-	
+  @Autowired private CustomerService customerService;
 
+  @MockBean private AuditLogRepository auditLogRepository;
+
+  @MockBean private ErrorLogRepository errorLogRepository;
+
+  @MockBean ObjectConvertUtil objectConvertUtil;
+
+  AuditLogEntity auditLogEntity = null;
+  ErrorLogEntity errorLogEntity = null;
+  Payload payload = null;
+
+  @Before
+  public void setup() {
+    CustomerRequest customerRequest = new CustomerRequest();
+    customerRequest.setBirthdate("20-05-1991");
+    customerRequest.setCountry("India");
+    customerRequest.setCountryCode("IN");
+    customerRequest.setCustomerNumber("HKJ73985IM");
+    customerRequest.setCustomerStatus(CustomerStatusEnum.O);
+    customerRequest.setEmail("user123@gmail.com");
+    customerRequest.setFirstName("Venkat 12345");
+    customerRequest.setLastName("Mandalapu 687");
+    customerRequest.setMobileNumber(BigDecimal.valueOf(8573567678l));
+    Address address = new Address();
+    address.setAddressLine1("H-NO :728,HYD");
+    address.setAddressLine2("INDIA");
+    address.setStreet("KPHB");
+    address.setPostalCode("78745");
+    customerRequest.setAddress(address);
+    payload = new Payload();
+    payload.setCustomerRequest(customerRequest);
+    auditLogEntity = objectConvertUtil.convertAuditLog(payload);
+    errorLogEntity =
+        objectConvertUtil.convertErrorLog(payload, "CustomerServiceException", "invalid input");
+  }
+
+  @Test
+  public void saveAuditDataTest() {
+    when(objectConvertUtil.convertAuditLog(any())).thenReturn(auditLogEntity);
+    when(auditLogRepository.save(any())).thenReturn(auditLogEntity);
+    customerService.saveAuditData(any());
+  }
+
+  @Test
+  public void saveErrorDataTest() {
+    when(objectConvertUtil.convertErrorLog(any(), anyString(), anyString()))
+        .thenReturn(errorLogEntity);
+    when(errorLogRepository.save(any())).thenReturn(errorLogEntity);
+    customerService.saveErrorData(payload, "CustomerServiceException", "invalid input");
+  }
 }

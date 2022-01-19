@@ -15,15 +15,16 @@ import lombok.Setter;
 @Getter
 @NoArgsConstructor
 @Entity
-@Table(name="AUDIT_LOG")
+@Table(name = "AUDIT_LOG")
 public class AuditLogEntity {
-	
-		@Id
-		@GeneratedValue (strategy = GenerationType.IDENTITY)
-		private int id;
-		@Column(name="CUSTOMER_NUMBER")
-		private String customerNumber;
-		@Column(columnDefinition="CLOB")
-		private String payload;
-	}
 
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private int id;
+
+  @Column(name = "CUSTOMER_NUMBER")
+  private String customerNumber;
+
+  @Column(columnDefinition = "CLOB")
+  private String payload;
+}

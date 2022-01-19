@@ -8,16 +8,16 @@ import com.pk.customer.domain.Payload;
 import com.pk.customer.interfaces.ICustomerPublisherService;
 
 @Service
-public class CustomerPublisherService implements ICustomerPublisherService{
-	
-	@Autowired
-	private KafkaTemplate<String, Object> template;
-	
-	private String topic = "customer_topic";
-	String message = "Customer message published to kafka topic";
-	@Override
-	public String publishMessage(Payload payload) {
-		template.send(topic,payload);
-		 return message;
-	}
+public class CustomerPublisherService implements ICustomerPublisherService {
+
+  @Autowired private KafkaTemplate<String, Object> template;
+
+  private String topic = "customer_topic";
+  String message = "Customer message published to kafka topic";
+
+  @Override
+  public String publishMessage(Payload payload) {
+    template.send(topic, payload);
+    return message;
+  }
 }

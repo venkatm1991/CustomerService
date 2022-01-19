@@ -13,35 +13,37 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+  @Override
+  protected void configure(HttpSecurity http) throws Exception {
+    http.antMatcher("/**")
+        .authorizeRequests()
+        .antMatchers("/oauth/authorize**", "/oauth/token**")
+        .permitAll()
+        .and()
+        .authorizeRequests()
+        .anyRequest()
+        .authenticated()
+        .and()
+        .formLogin()
+        .permitAll();
+  }
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-    	http
-        	.antMatcher("/**")
-	        	.authorizeRequests()
-	        	.antMatchers("/oauth/authorize**", "/oauth/token**")
-	        	.permitAll()
-        	.and()
-            	.authorizeRequests()
-            	.anyRequest().authenticated()
-        	.and()
-        		.formLogin().permitAll();
-    }
+  @Override
+  protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+    auth.inMemoryAuthentication()
+        .withUser("Venkat")
+        .password(passwordEncoder().encode("Venkat"))
+        .roles("USER");
+  }
 
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth
-        	.inMemoryAuthentication()
-            .withUser("Venkat").password(passwordEncoder().encode("Venkat")).roles("USER");
-    }
+  @Bean
+  public BCryptPasswordEncoder passwordEncoder() {
+    return new BCryptPasswordEncoder();
+  }
 
-    @Bean
-    public BCryptPasswordEncoder passwordEncoder(){
-        return new BCryptPasswordEncoder();
-    }
-    @Override
-    @Bean
-    public AuthenticationManager authenticationManagerBean() throws Exception {
-        return super.authenticationManagerBean();
-    }
+  @Override
+  @Bean
+  public AuthenticationManager authenticationManagerBean() throws Exception {
+    return super.authenticationManagerBean();
+  }
 }

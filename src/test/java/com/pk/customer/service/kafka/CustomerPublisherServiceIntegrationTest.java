@@ -22,33 +22,30 @@ import com.pk.customer.domain.Payload;
 @SpringBootTest
 public class CustomerPublisherServiceIntegrationTest {
 
-	@Autowired
-	CustomerPublisherService customerPublisherService;
-	
-	@Test
-	public void publishMessageTest() {
-		CustomerRequest customerRequest = new CustomerRequest ();
-		
-		customerRequest.setBirthdate("20-05-1991");
-		customerRequest.setCountry("India");
-		customerRequest.setCountryCode("IN");
-		customerRequest.setCustomerNumber("HKJ73985IM");
-		customerRequest.setCustomerStatus(CustomerStatusEnum.O);
-		customerRequest.setEmail("user123@gmail.com");
-		customerRequest.setFirstName("Venkat 12345");
-		customerRequest.setLastName("Mandalapu 687");
-		customerRequest.setMobileNumber(BigDecimal.valueOf(8573567678l));
-		Address address=new Address();
-		address.setAddressLine1("H-NO :728,HYD");
-		address.setAddressLine2("INDIA");
-		address.setStreet("KPHB");
-		address.setPostalCode("78745");
-		customerRequest.setAddress(address);
-		Payload payload = new Payload();
-		payload.setCustomerRequest(customerRequest);
-		String response =customerPublisherService.publishMessage(payload);
-		assertEquals("Customer message published to kafka topic", response);
-		
-		
-	}
+  @Autowired CustomerPublisherService customerPublisherService;
+
+  @Test
+  public void publishMessageTest() {
+    CustomerRequest customerRequest = new CustomerRequest();
+
+    customerRequest.setBirthdate("20-05-1991");
+    customerRequest.setCountry("India");
+    customerRequest.setCountryCode("IN");
+    customerRequest.setCustomerNumber("HKJ73985IM");
+    customerRequest.setCustomerStatus(CustomerStatusEnum.O);
+    customerRequest.setEmail("user123@gmail.com");
+    customerRequest.setFirstName("Venkat 12345");
+    customerRequest.setLastName("Mandalapu 687");
+    customerRequest.setMobileNumber(BigDecimal.valueOf(8573567678l));
+    Address address = new Address();
+    address.setAddressLine1("H-NO :728,HYD");
+    address.setAddressLine2("INDIA");
+    address.setStreet("KPHB");
+    address.setPostalCode("78745");
+    customerRequest.setAddress(address);
+    Payload payload = new Payload();
+    payload.setCustomerRequest(customerRequest);
+    String response = customerPublisherService.publishMessage(payload);
+    assertEquals("Customer message published to kafka topic", response);
+  }
 }

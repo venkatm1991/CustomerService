@@ -15,47 +15,49 @@ import com.pk.customer.domain.ErrorResponse;
 import com.pk.customer.exception.CustomerServiceRequestException;
 
 @ControllerAdvice
-public class CustomerControllerAdvice{
-	private static final  Logger log= LoggerFactory.getLogger(CustomerControllerAdvice.class);
-	
-	private static final String FAILED = "Failed";
-	@ExceptionHandler(ServletRequestBindingException.class)
-	  public ResponseEntity<ErrorResponse> handleException(ServletRequestBindingException ex) {
-		ErrorResponse errorResponse =new ErrorResponse();
-		errorResponse.setStatus(FAILED);
-		errorResponse.setMessage(ex.getMessage());
-		errorResponse.setErrorType(ServletRequestBindingException.class.getSimpleName());  
-		log.error("Error response - {}",errorResponse);
-	    return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
-	  }
-	
-	@ExceptionHandler(AuthenticationException.class)
-	  public ResponseEntity<ErrorResponse> handleException(AuthenticationException ex) {
-		ErrorResponse errorResponse =new ErrorResponse();
-		errorResponse.setStatus(FAILED);
-		errorResponse.setMessage(String.format("%s - %s", "Authentication Error", ex.getMessage()));
-		errorResponse.setErrorType(AuthenticationException.class.getSimpleName());   
-		log.error("Error response - {}",errorResponse);
-	    return new ResponseEntity<>(errorResponse, HttpStatus.UNAUTHORIZED);
-	  }
-	
-	@ExceptionHandler(NoHandlerFoundException.class)
-	  public ResponseEntity<ErrorResponse> handleException(NoHandlerFoundException ex) {
-		ErrorResponse errorResponse =new ErrorResponse();
-		errorResponse.setStatus(FAILED);
-		errorResponse.setMessage(ex.getMessage());
-		errorResponse.setErrorType(NoHandlerFoundException.class.getSimpleName());  
-		log.error("Error response - {}",errorResponse);
-	    return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
-	  }
-	
-	@ExceptionHandler(CustomerServiceRequestException.class)
-	  public ResponseEntity<ErrorResponse> handleException(CustomerServiceRequestException ex) {
-		ErrorResponse errorResponse =new ErrorResponse();
-		errorResponse.setStatus(FAILED);
-		errorResponse.setMessage(ex.getMessage());
-		errorResponse.setErrorType(CustomerServiceRequestException.class.getSimpleName());
-		log.error("Error response - {}",errorResponse);
-	    return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
-	  }
-}
+public class CustomerControllerAdvice {
+  private static final Logger log = LoggerFactory.getLogger(CustomerControllerAdvice.class);
+
+  private static final String FAILED = "Failed";
+
+  @ExceptionHandler(ServletRequestBindingException.class)
+  public ResponseEntity<ErrorResponse> handleException(ServletRequestBindingException ex) {
+    ErrorResponse errorResponse = new ErrorResponse();
+    errorResponse.setStatus(FAILED);
+    errorResponse.setMessage(ex.getMessage());
+    errorResponse.setErrorType(ServletRequestBindingException.class.getSimpleName());
+    log.error("Error response - {}", errorResponse);
+    return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
+  }
+
+  @ExceptionHandler(AuthenticationException.class)
+  public ResponseEntity<ErrorResponse> handleException(AuthenticationException ex) {
+    ErrorResponse errorResponse = new ErrorResponse();
+    errorResponse.setStatus(FAILED);
+    errorResponse.setMessage(String.format("%s - %s", "Authentication Error", ex.getMessage()));
+    errorResponse.setErrorType(AuthenticationException.class.getSimpleName());
+    log.error("Error response - {}", errorResponse);
+    return new ResponseEntity<>(errorResponse, HttpStatus.UNAUTHORIZED);
+  }
+
+  @ExceptionHandler(NoHandlerFoundException.class)
+  public ResponseEntity<ErrorResponse> handleException(NoHandlerFoundException ex) {
+    ErrorResponse errorResponse = new ErrorResponse();
+    errorResponse.setStatus(FAILED);
+    errorResponse.setMessage(ex.getMessage());
+    errorResponse.setErrorType(NoHandlerFoundException.class.getSimpleName());
+    log.error("Error response - {}", errorResponse);
+    return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
+  }
+
+  @ExceptionHandler(CustomerServiceRequestException.class)
+  public ResponseEntity<ErrorResponse> handleException(CustomerServiceRequestException ex) {
+    ErrorResponse errorResponse = new ErrorResponse();
+    errorResponse.setStatus(FAILED);
+    errorResponse.setMessage(ex.getMessage());
+    errorResponse.setErrorType(CustomerServiceRequestException.class.getSimpleName());
+    log.error("Error response - {}", errorResponse);
+    return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
+  }
+  
+ }

@@ -24,33 +24,35 @@ import com.pk.customer.util.ObjectConvertUtil;
 @RestController
 @RequestMapping("/v1/api")
 public class CustomerController {
-	
-	private static final  Logger log= LoggerFactory.getLogger(CustomerController.class);
-	
-	@Autowired
-	CustomerMaskUtil customerMaskUtil;
-	
-	@Autowired
-	JsonUtil jsonUtil;
-	
-	@Autowired
-	ObjectConvertUtil objectConvertUtil;
-	
-	@Autowired
-	CustomerPublisherService customerPublisherService;
-	
-	@PostMapping(value = "/customer", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<CustomerResponse> addCustomer(
-	@RequestHeader(value="Transaction-Id", required=false) String transactionId,
-	@RequestHeader(value="Activity-Id", required=false) String activityId,
-	@Valid @RequestBody CustomerRequest customerRequest){
-		String maskCustomerRequest = jsonUtil.convertObjectToString(customerMaskUtil.convert(customerRequest));
-		log.info("addCustomer request {}",maskCustomerRequest);
-		String response = customerPublisherService.publishMessage(objectConvertUtil.converToPayload(customerRequest, transactionId, activityId));
-		CustomerResponse customerResponse = objectConvertUtil.converToCustomerResponse("Success", response);
-		log.info("addCustomer response  {}",customerResponse);
-        return new ResponseEntity<>(customerResponse,HttpStatus.OK);
-    }
-	    
-	
+
+  private static final Logger log = LoggerFactory.getLogger(CustomerController.class);
+
+  @Autowired CustomerMaskUtil customerMaskUtil;
+
+  @Autowired JsonUtil jsonUtil;
+
+  @Autowired ObjectConvertUtil objectConvertUtil;
+
+  @Autowired CustomerPublisherService customerPublisherService;
+
+  @PostMapping(
+    value = "/customer",
+    produces = MediaType.APPLICATION_JSON_VALUE,
+    consumes = MediaType.APPLICATION_JSON_VALUE
+  )
+  public ResponseEntity<CustomerResponse> addCustomer(
+      @RequestHeader(value = "Transaction-Id", required = false) String transactionId,
+      @RequestHeader(value = "Activity-Id", required = false) String activityId,
+      @Valid @RequestBody CustomerRequest customerRequest) {
+    String maskCustomerRequest =
+        jsonUtil.convertObjectToString(customerMaskUtil.convert(customerRequest));
+    log.info("addCustomer request {}", maskCustomerRequest);
+    String response =
+        customerPublisherService.publishMessage(
+            objectConvertUtil.converToPayload(customerRequest, transactionId, activityId));
+    CustomerResponse customerResponse =
+        objectConvertUtil.converToCustomerResponse("Success", response);
+    log.info("addCustomer response  {}", customerResponse);
+    return new ResponseEntity<>(customerResponse, HttpStatus.OK);
+  }
 }
