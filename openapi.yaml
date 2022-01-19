@@ -1,0 +1,205 @@
+openapi: 3.0.0
+info:
+  title: Customer Service API
+  description: Customer service
+  version: 1.0.0
+  
+servers: 
+  - url: '{protocol}://{environment}:{port}/v1/api'
+    description: local server
+    variables:
+      protocol:
+        enum:
+        - http
+        - https
+        default: http
+      environment:  
+        enum:
+        - localhost
+        default: localhost
+      port:
+        enum: 
+        - '8080'
+        default: '8080'
+        
+paths:
+  /customer:
+    post:
+      summary: customer publish service
+      description: customer registration service
+      parameters:
+      - in: header
+        name: Transaction-Id
+        description: customer service transaction id
+        required: true
+        schema:
+          type: string
+          example: T778KST38D
+      - in: header
+        name: Activity-Id
+        description: customer service activity id
+        required: true
+        schema:
+          type: string
+          example: SYA8SJSSGS767
+      requestBody:
+        required: true
+        content:
+          application/json:
+           schema:
+              $ref: '#/components/schemas/CustomerRequest'
+      responses:
+        200:    
+          description: Success
+          content:
+            application/json:
+              schema: 
+                $ref: '#/components/schemas/CustomerResponse'
+        400:    
+          description: Bad Request
+          content:
+            application/json:
+              schema: 
+                $ref: '#/components/schemas/ErrorResponse'
+        401:    
+          description: Unautherized
+          content:
+            application/json:
+              schema: 
+                $ref: '#/components/schemas/ErrorResponse'
+        404:    
+          description: Not Found
+          content:
+            application/json:
+              schema: 
+                $ref: '#/components/schemas/ErrorResponse'        
+        500:    
+          description: Internal Server Error
+          content:
+            application/json:
+              schema: 
+                $ref: '#/components/schemas/ErrorResponse'  
+      security:
+        - OAuth2:
+          - write
+          
+components:
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        password:
+          tokenUrl: http://localhost:8080/oauth/token
+          scopes:
+            write: write customer data
+            right: get customer data
+  schemas:
+    CustomerRequest:
+      type: object
+      required:
+      - customerNumber
+      - firstName
+      - lastName
+      - birthdate
+      - country
+      - countryCode
+      - mobileNumber
+      - email
+      - customerStatus
+      - address
+      properties:
+        customerNumber:
+          type: string
+          pattern: ^(?=.*[A-Z])(?=.*[0-9])[A-Z0-9]+$
+          maxLength: 10
+          example: TY6129H983
+        firstName :
+          type: string
+          minLength: 10
+          maxLength: 50
+          example: Venkat Rao
+        lastName :
+          type: string
+          minLength: 10
+          maxLength: 50 
+          example: Mandalapu Venkat
+        birthdate :
+          type: string
+          pattern: DD-MM-YYYY
+          example: 20-08-1995
+        country :
+          type: string
+          example: INDIA
+        countryCode :
+          type: string
+          maxLength: 2
+          minLength: 2
+          example: IN
+        mobileNumber :
+          type: number
+          maxLength: 10
+          minLength: 10
+          example: 9764825262
+        email :
+          type: string
+          format: email 
+          example: user1234@gmail.com
+        customerStatus :
+          type: string
+          description: required, enum values (O-Open , C-Close , S-Suspended , R-Restored)
+          enum:
+          - O
+          - C
+          - S
+          - R
+          example : O
+        address:  
+          $ref: "#/components/schemas/Address"        
+    Address:
+      type: object
+      required:
+      - addressLine1
+      - postalCode
+      properties:
+        addressLine1:
+          type: string
+          maxLength: 50
+          example: H-NO:1-11,KPHB 
+        addressLine2:
+          type: string
+          example: HYD
+        street :
+          type: string
+          example: 3rd Line
+        postalCode :
+          type: string
+          maxLength: 5
+          example: 50023
+    CustomerResponse:
+      type: object
+      required:
+      - status
+      - message
+      properties:
+        status:
+          type: string
+          example: Success 
+        message:
+          type: string
+          example: customer data published
+    ErrorResponse:
+      type: object
+      required:
+      - status
+      - message 
+      properties:
+        status:
+          type: string
+          example: Failed
+        message:
+          type: string
+          example: exception message
+        errorType :
+          type: string
+          example: exception type
+                  
