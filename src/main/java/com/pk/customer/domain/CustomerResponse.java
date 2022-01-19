@@ -8,15 +8,16 @@ import org.springframework.validation.annotation.Validated;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 
-/** CustomerResponse */
+/**
+ * CustomerResponse
+ */
 @Validated
-@javax.annotation.Generated(
-  value = "io.swagger.codegen.languages.SpringCodegen",
-  date = "2022-01-13T11:30:14.983Z"
-)
-public class CustomerResponse {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-01-19T10:15:25.890Z[GMT]")
+
+
+public class CustomerResponse   {
   @JsonProperty("status")
   private String status = null;
 
@@ -30,12 +31,12 @@ public class CustomerResponse {
 
   /**
    * Get status
-   *
    * @return status
-   */
-  @ApiModelProperty(required = true, value = "")
-  @NotNull
-  public String getStatus() {
+   **/
+  @Schema(example = "Success", required = true, description = "")
+      @NotNull
+
+    public String getStatus() {
     return status;
   }
 
@@ -50,18 +51,19 @@ public class CustomerResponse {
 
   /**
    * Get message
-   *
    * @return message
-   */
-  @ApiModelProperty(required = true, value = "")
-  @NotNull
-  public String getMessage() {
+   **/
+  @Schema(example = "customer data published", required = true, description = "")
+      @NotNull
+
+    public String getMessage() {
     return message;
   }
 
   public void setMessage(String message) {
     this.message = message;
   }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -72,8 +74,8 @@ public class CustomerResponse {
       return false;
     }
     CustomerResponse customerResponse = (CustomerResponse) o;
-    return Objects.equals(this.status, customerResponse.status)
-        && Objects.equals(this.message, customerResponse.message);
+    return Objects.equals(this.status, customerResponse.status) &&
+        Objects.equals(this.message, customerResponse.message);
   }
 
   @Override
@@ -85,7 +87,7 @@ public class CustomerResponse {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class CustomerResponse {\n");
-
+    
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    message: ").append(toIndentedString(message)).append("\n");
     sb.append("}");
@@ -93,7 +95,8 @@ public class CustomerResponse {
   }
 
   /**
-   * Convert the given object to string with each line indented by 4 spaces (except the first line).
+   * Convert the given object to string with each line indented by 4 spaces
+   * (except the first line).
    */
   private String toIndentedString(java.lang.Object o) {
     if (o == null) {

@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.util.Objects;
 
 import javax.validation.Valid;
-import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -15,47 +15,59 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 
-/** CustomerRequest */
+/**
+ * CustomerRequest
+ */
 @Validated
-@javax.annotation.Generated(
-  value = "io.swagger.codegen.languages.SpringCodegen",
-  date = "2022-01-13T11:30:14.983Z"
-)
-public class CustomerRequest {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-01-19T10:15:25.890Z[GMT]")
+
+
+public class CustomerRequest   {
   @JsonProperty("customerNumber")
+  @NotBlank
   private String customerNumber = null;
 
   @JsonProperty("firstName")
+  @NotBlank
   private String firstName = null;
 
   @JsonProperty("lastName")
+  @NotBlank
   private String lastName = null;
 
   @JsonProperty("birthdate")
+  @NotBlank
+  @Pattern(regexp = "^(3[01]|[12][0-9]|0[1-9])-(1[0-2]|0[1-9])-[0-9]{4}$")
   private String birthdate = null;
 
   @JsonProperty("country")
+  @NotBlank
   private String country = null;
 
   @JsonProperty("countryCode")
+  @NotBlank
   private String countryCode = null;
 
   @JsonProperty("mobileNumber")
+  @NotNull
   private BigDecimal mobileNumber = null;
 
   @JsonProperty("email")
+  @NotBlank
   private String email = null;
 
-  /** required, enum values (O-Open , C-Close , S-Suspended , R-Restored) */
+  /**
+   * required, enum values (O-Open , C-Close , S-Suspended , R-Restored)
+   */
   public enum CustomerStatusEnum {
     O("O"),
-
+    
     C("C"),
-
+    
     S("S"),
-
+    
     R("R");
 
     private String value;
@@ -80,11 +92,12 @@ public class CustomerRequest {
       return null;
     }
   }
-
   @JsonProperty("customerStatus")
+  @NotNull
   private CustomerStatusEnum customerStatus = null;
 
   @JsonProperty("address")
+  @NotNull
   private Address address = null;
 
   public CustomerRequest customerNumber(String customerNumber) {
@@ -94,14 +107,12 @@ public class CustomerRequest {
 
   /**
    * Get customerNumber
-   *
    * @return customerNumber
-   */
-  @ApiModelProperty(required = true, value = "")
-  @NotNull
-  @Pattern(regexp = "^(?=.*[A-Z])(?=.*[0-9])[A-Z0-9]+$")
-  @Size(max = 10)
-  public String getCustomerNumber() {
+   **/
+  @Schema(example = "TY6129H983", required = true, description = "")
+      @NotNull
+
+  @Pattern(regexp="^(?=.*[A-Z])(?=.*[0-9])[A-Z0-9]+$") @Size(max=10)   public String getCustomerNumber() {
     return customerNumber;
   }
 
@@ -116,13 +127,12 @@ public class CustomerRequest {
 
   /**
    * Get firstName
-   *
    * @return firstName
-   */
-  @ApiModelProperty(required = true, value = "")
-  @NotNull
-  @Size(min = 10, max = 50)
-  public String getFirstName() {
+   **/
+  @Schema(example = "Venkat Rao", required = true, description = "")
+      @NotNull
+
+  @Size(min=10,max=50)   public String getFirstName() {
     return firstName;
   }
 
@@ -137,13 +147,12 @@ public class CustomerRequest {
 
   /**
    * Get lastName
-   *
    * @return lastName
-   */
-  @ApiModelProperty(required = true, value = "")
-  @NotNull
-  @Size(min = 10, max = 50)
-  public String getLastName() {
+   **/
+  @Schema(example = "Mandalapu Venkat", required = true, description = "")
+      @NotNull
+
+  @Size(min=10,max=50)   public String getLastName() {
     return lastName;
   }
 
@@ -158,11 +167,11 @@ public class CustomerRequest {
 
   /**
    * Get birthdate
-   *
    * @return birthdate
-   */
-  @ApiModelProperty(required = true, value = "")
-  @NotNull
+   **/
+  @Schema(example = "20-08-1995", required = true, description = "")
+      @NotNull
+
   public String getBirthdate() {
     return birthdate;
   }
@@ -178,12 +187,12 @@ public class CustomerRequest {
 
   /**
    * Get country
-   *
    * @return country
-   */
-  @ApiModelProperty(required = true, value = "")
-  @NotNull
-  public String getCountry() {
+   **/
+  @Schema(example = "INDIA", required = true, description = "")
+      @NotNull
+
+    public String getCountry() {
     return country;
   }
 
@@ -198,13 +207,12 @@ public class CustomerRequest {
 
   /**
    * Get countryCode
-   *
    * @return countryCode
-   */
-  @ApiModelProperty(required = true, value = "")
-  @NotNull
-  @Size(max = 2)
-  public String getCountryCode() {
+   **/
+  @Schema(example = "IN", required = true, description = "")
+      @NotNull
+
+  @Size(min=2,max=2)   public String getCountryCode() {
     return countryCode;
   }
 
@@ -219,13 +227,13 @@ public class CustomerRequest {
 
   /**
    * Get mobileNumber
-   *
    * @return mobileNumber
-   */
-  @ApiModelProperty(required = true, value = "")
-  @NotNull
-  @Valid
-  public BigDecimal getMobileNumber() {
+   **/
+  @Schema(example = "9764825262", required = true, description = "")
+      @NotNull
+
+    @Valid
+    public BigDecimal getMobileNumber() {
     return mobileNumber;
   }
 
@@ -240,13 +248,12 @@ public class CustomerRequest {
 
   /**
    * Get email
-   *
    * @return email
-   */
-  @ApiModelProperty(required = true, value = "")
-  @NotNull
-  @Email
-  public String getEmail() {
+   **/
+  @Schema(example = "user1234@gmail.com", required = true, description = "")
+      @NotNull
+
+    public String getEmail() {
     return email;
   }
 
@@ -261,15 +268,12 @@ public class CustomerRequest {
 
   /**
    * required, enum values (O-Open , C-Close , S-Suspended , R-Restored)
-   *
    * @return customerStatus
-   */
-  @ApiModelProperty(
-    required = true,
-    value = "required, enum values (O-Open , C-Close , S-Suspended , R-Restored)"
-  )
-  @NotNull
-  public CustomerStatusEnum getCustomerStatus() {
+   **/
+  @Schema(example = "O", required = true, description = "required, enum values (O-Open , C-Close , S-Suspended , R-Restored)")
+      @NotNull
+
+    public CustomerStatusEnum getCustomerStatus() {
     return customerStatus;
   }
 
@@ -284,19 +288,20 @@ public class CustomerRequest {
 
   /**
    * Get address
-   *
    * @return address
-   */
-  @ApiModelProperty(required = true, value = "")
-  @NotNull
-  @Valid
-  public Address getAddress() {
+   **/
+  @Schema(required = true, description = "")
+      @NotNull
+
+    @Valid
+    public Address getAddress() {
     return address;
   }
 
   public void setAddress(Address address) {
     this.address = address;
   }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -307,38 +312,28 @@ public class CustomerRequest {
       return false;
     }
     CustomerRequest customerRequest = (CustomerRequest) o;
-    return Objects.equals(this.customerNumber, customerRequest.customerNumber)
-        && Objects.equals(this.firstName, customerRequest.firstName)
-        && Objects.equals(this.lastName, customerRequest.lastName)
-        && Objects.equals(this.birthdate, customerRequest.birthdate)
-        && Objects.equals(this.country, customerRequest.country)
-        && Objects.equals(this.countryCode, customerRequest.countryCode)
-        && Objects.equals(this.mobileNumber, customerRequest.mobileNumber)
-        && Objects.equals(this.email, customerRequest.email)
-        && Objects.equals(this.customerStatus, customerRequest.customerStatus)
-        && Objects.equals(this.address, customerRequest.address);
+    return Objects.equals(this.customerNumber, customerRequest.customerNumber) &&
+        Objects.equals(this.firstName, customerRequest.firstName) &&
+        Objects.equals(this.lastName, customerRequest.lastName) &&
+        Objects.equals(this.birthdate, customerRequest.birthdate) &&
+        Objects.equals(this.country, customerRequest.country) &&
+        Objects.equals(this.countryCode, customerRequest.countryCode) &&
+        Objects.equals(this.mobileNumber, customerRequest.mobileNumber) &&
+        Objects.equals(this.email, customerRequest.email) &&
+        Objects.equals(this.customerStatus, customerRequest.customerStatus) &&
+        Objects.equals(this.address, customerRequest.address);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(
-        customerNumber,
-        firstName,
-        lastName,
-        birthdate,
-        country,
-        countryCode,
-        mobileNumber,
-        email,
-        customerStatus,
-        address);
+    return Objects.hash(customerNumber, firstName, lastName, birthdate, country, countryCode, mobileNumber, email, customerStatus, address);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class CustomerRequest {\n");
-
+    
     sb.append("    customerNumber: ").append(toIndentedString(customerNumber)).append("\n");
     sb.append("    firstName: ").append(toIndentedString(firstName)).append("\n");
     sb.append("    lastName: ").append(toIndentedString(lastName)).append("\n");
@@ -354,7 +349,8 @@ public class CustomerRequest {
   }
 
   /**
-   * Convert the given object to string with each line indented by 4 spaces (except the first line).
+   * Convert the given object to string with each line indented by 4 spaces
+   * (except the first line).
    */
   private String toIndentedString(java.lang.Object o) {
     if (o == null) {

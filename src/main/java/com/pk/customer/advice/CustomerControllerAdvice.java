@@ -1,11 +1,13 @@
 package com.pk.customer.advice;
 
 import javax.security.sasl.AuthenticationException;
+import javax.validation.UnexpectedTypeException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.ServletRequestBindingException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -49,6 +51,16 @@ public class CustomerControllerAdvice {
     log.error("Error response - {}", errorResponse);
     return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
   }
+  @ExceptionHandler(MethodArgumentNotValidException.class)
+  public ResponseEntity<ErrorResponse> handleException(MethodArgumentNotValidException ex) {
+    ErrorResponse errorResponse = new ErrorResponse();
+    errorResponse.setStatus(FAILED);
+    errorResponse.setMessage(ex.getMessage());
+    errorResponse.setErrorType(MethodArgumentNotValidException.class.getSimpleName());
+    log.error("Error response - {}", errorResponse);
+    return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
+  }
+  
 
   @ExceptionHandler(CustomerServiceRequestException.class)
   public ResponseEntity<ErrorResponse> handleException(CustomerServiceRequestException ex) {
@@ -59,5 +71,17 @@ public class CustomerControllerAdvice {
     log.error("Error response - {}", errorResponse);
     return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
   }
+  
+  @ExceptionHandler(UnexpectedTypeException.class)
+  public ResponseEntity<ErrorResponse> handleException(UnexpectedTypeException ex) {
+    ErrorResponse errorResponse = new ErrorResponse();
+    errorResponse.setStatus(FAILED);
+    errorResponse.setMessage(ex.getMessage());
+    errorResponse.setErrorType(UnexpectedTypeException.class.getSimpleName());
+    log.error("Error response - {}", errorResponse);
+    return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
+  }
+  
+  
   
  }

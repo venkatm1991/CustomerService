@@ -8,15 +8,16 @@ import org.springframework.validation.annotation.Validated;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 
-/** ErrorResponse */
+/**
+ * ErrorResponse
+ */
 @Validated
-@javax.annotation.Generated(
-  value = "io.swagger.codegen.languages.SpringCodegen",
-  date = "2022-01-13T11:30:14.983Z"
-)
-public class ErrorResponse {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-01-19T10:15:25.890Z[GMT]")
+
+
+public class ErrorResponse   {
   @JsonProperty("status")
   private String status = null;
 
@@ -33,12 +34,12 @@ public class ErrorResponse {
 
   /**
    * Get status
-   *
    * @return status
-   */
-  @ApiModelProperty(required = true, value = "")
-  @NotNull
-  public String getStatus() {
+   **/
+  @Schema(example = "Failed", required = true, description = "")
+      @NotNull
+
+    public String getStatus() {
     return status;
   }
 
@@ -53,12 +54,12 @@ public class ErrorResponse {
 
   /**
    * Get message
-   *
    * @return message
-   */
-  @ApiModelProperty(required = true, value = "")
-  @NotNull
-  public String getMessage() {
+   **/
+  @Schema(example = "exception message", required = true, description = "")
+      @NotNull
+
+    public String getMessage() {
     return message;
   }
 
@@ -73,17 +74,18 @@ public class ErrorResponse {
 
   /**
    * Get errorType
-   *
    * @return errorType
-   */
-  @ApiModelProperty(value = "")
-  public String getErrorType() {
+   **/
+  @Schema(example = "exception type", description = "")
+  
+    public String getErrorType() {
     return errorType;
   }
 
   public void setErrorType(String errorType) {
     this.errorType = errorType;
   }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -94,9 +96,9 @@ public class ErrorResponse {
       return false;
     }
     ErrorResponse errorResponse = (ErrorResponse) o;
-    return Objects.equals(this.status, errorResponse.status)
-        && Objects.equals(this.message, errorResponse.message)
-        && Objects.equals(this.errorType, errorResponse.errorType);
+    return Objects.equals(this.status, errorResponse.status) &&
+        Objects.equals(this.message, errorResponse.message) &&
+        Objects.equals(this.errorType, errorResponse.errorType);
   }
 
   @Override
@@ -108,7 +110,7 @@ public class ErrorResponse {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ErrorResponse {\n");
-
+    
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    message: ").append(toIndentedString(message)).append("\n");
     sb.append("    errorType: ").append(toIndentedString(errorType)).append("\n");
@@ -117,7 +119,8 @@ public class ErrorResponse {
   }
 
   /**
-   * Convert the given object to string with each line indented by 4 spaces (except the first line).
+   * Convert the given object to string with each line indented by 4 spaces
+   * (except the first line).
    */
   private String toIndentedString(java.lang.Object o) {
     if (o == null) {

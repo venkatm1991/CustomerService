@@ -2,6 +2,7 @@ package com.pk.customer.domain;
 
 import java.util.Objects;
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -9,16 +10,18 @@ import org.springframework.validation.annotation.Validated;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 
-/** Address */
+/**
+ * Address
+ */
 @Validated
-@javax.annotation.Generated(
-  value = "io.swagger.codegen.languages.SpringCodegen",
-  date = "2022-01-13T11:30:14.983Z"
-)
-public class Address {
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-01-19T10:15:25.890Z[GMT]")
+
+
+public class Address   {
   @JsonProperty("addressLine1")
+  @NotBlank
   private String addressLine1 = null;
 
   @JsonProperty("addressLine2")
@@ -28,6 +31,7 @@ public class Address {
   private String street = null;
 
   @JsonProperty("postalCode")
+  @NotBlank
   private String postalCode = null;
 
   public Address addressLine1(String addressLine1) {
@@ -37,13 +41,12 @@ public class Address {
 
   /**
    * Get addressLine1
-   *
    * @return addressLine1
-   */
-  @ApiModelProperty(required = true, value = "")
-  @NotNull
-  @Size(max = 50)
-  public String getAddressLine1() {
+   **/
+  @Schema(example = "H-NO:1-11,KPHB", required = true, description = "")
+      @NotNull
+
+  @Size(max=50)   public String getAddressLine1() {
     return addressLine1;
   }
 
@@ -58,11 +61,11 @@ public class Address {
 
   /**
    * Get addressLine2
-   *
    * @return addressLine2
-   */
-  @ApiModelProperty(value = "")
-  public String getAddressLine2() {
+   **/
+  @Schema(example = "HYD", description = "")
+  
+    public String getAddressLine2() {
     return addressLine2;
   }
 
@@ -77,11 +80,11 @@ public class Address {
 
   /**
    * Get street
-   *
    * @return street
-   */
-  @ApiModelProperty(value = "")
-  public String getStreet() {
+   **/
+  @Schema(example = "3rd Line", description = "")
+  
+    public String getStreet() {
     return street;
   }
 
@@ -96,19 +99,19 @@ public class Address {
 
   /**
    * Get postalCode
-   *
    * @return postalCode
-   */
-  @ApiModelProperty(required = true, value = "")
-  @NotNull
-  @Size(max = 5)
-  public String getPostalCode() {
+   **/
+  @Schema(example = "50023", required = true, description = "")
+      @NotNull
+
+  @Size(max=5)   public String getPostalCode() {
     return postalCode;
   }
 
   public void setPostalCode(String postalCode) {
     this.postalCode = postalCode;
   }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -119,10 +122,10 @@ public class Address {
       return false;
     }
     Address address = (Address) o;
-    return Objects.equals(this.addressLine1, address.addressLine1)
-        && Objects.equals(this.addressLine2, address.addressLine2)
-        && Objects.equals(this.street, address.street)
-        && Objects.equals(this.postalCode, address.postalCode);
+    return Objects.equals(this.addressLine1, address.addressLine1) &&
+        Objects.equals(this.addressLine2, address.addressLine2) &&
+        Objects.equals(this.street, address.street) &&
+        Objects.equals(this.postalCode, address.postalCode);
   }
 
   @Override
@@ -134,7 +137,7 @@ public class Address {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Address {\n");
-
+    
     sb.append("    addressLine1: ").append(toIndentedString(addressLine1)).append("\n");
     sb.append("    addressLine2: ").append(toIndentedString(addressLine2)).append("\n");
     sb.append("    street: ").append(toIndentedString(street)).append("\n");
@@ -144,7 +147,8 @@ public class Address {
   }
 
   /**
-   * Convert the given object to string with each line indented by 4 spaces (except the first line).
+   * Convert the given object to string with each line indented by 4 spaces
+   * (except the first line).
    */
   private String toIndentedString(java.lang.Object o) {
     if (o == null) {
